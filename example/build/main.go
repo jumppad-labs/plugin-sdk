@@ -54,7 +54,7 @@ func build(ctx context.Context) error {
 			// set GOARCH and GOOS in the build environment
 			build := golang.WithEnvVariable("GOOS", goos)
 			build = build.WithEnvVariable("GOARCH", goarch)
-			build = build.WithEnvVariable("CGO_ENABLED", "0")
+			build = build.WithEnvVariable("CGO_ENABLED", "1")
 
 			// build application
 			build = build.WithExec([]string{"go", "build", "-buildmode=plugin", "-o", path})
