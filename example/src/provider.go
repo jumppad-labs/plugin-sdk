@@ -1,6 +1,8 @@
 package main
 
 import (
+	"context"
+
 	"github.com/jumppad-labs/hclconfig/types"
 	sdk "github.com/jumppad-labs/plugin-sdk"
 )
@@ -16,18 +18,39 @@ func (p *ExampleProvider) Init(resource types.Resource, logger sdk.Logger) error
 	return nil
 }
 
-func (p *ExampleProvider) Create() error {
+func (p *ExampleProvider) Create(ctx context.Context) error {
 	p.logger.Info("Create example")
+
+	// Check if the context has been cancelled
+	if ctx.Err() != nil {
+		return nil
+	}
+
+	// do something
 	return nil
 }
 
-func (p *ExampleProvider) Destroy() error {
-	p.logger.Info("Destroy example")
+func (p *ExampleProvider) Destroy(ctx context.Context, force bool) error {
+	p.logger.Info("Destroy example", "force", force)
+
+	// Check if the context has been cancelled
+	if ctx.Err() != nil {
+		return nil
+	}
+
+	// do something
+
 	return nil
 }
 
-func (p *ExampleProvider) Refresh() error {
+func (p *ExampleProvider) Refresh(ctx context.Context) error {
 	p.logger.Info("Refresh example")
+
+	// Check if the context has been cancelled
+	if ctx.Err() != nil {
+		return nil
+	}
+
 	return nil
 }
 
